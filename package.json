@@ -1,0 +1,31 @@
+{
+  "name": "republikaindependiente",
+  "version": "1.0.0",
+  "description": "Sitio estático de la agencia digital Repúblika Independiente.",
+  "main": "index.js",
+  "scripts": {
+    "test": "babel src --out-file ri.js --source-maps",
+    "build": "babel src --out-file ri.js --source-maps && minify ri.js --out-file ri.js --mangle.keepClassName"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bernethe/republika2020.git"
+  },
+  "author": "bernethe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bernethe/republika2020/issues"
+  },
+  "homepage": "https://github.com/bernethe/republika2020#readme",
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "normalize-scss": "^7.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "babel-minify": "^0.5.1",
+    "animate-sass": "^0.8.2"
+  }
+}
