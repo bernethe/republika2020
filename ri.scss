@@ -136,17 +136,20 @@ header.main-header {
 		& a {
 			@include xlink {
 				text-align: center;
-				border: 1px solid #fff;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-size: .75em;
 				padding: .5em;
-				border-radius: 50%;
 				width: 2.5em;
 				height: 2.5em;
 			}
 		}
+	}
+	@include media-breakpoint-between(md, lg) {
+		font-size: .75em;
+	}
+	@include media-breakpoint-between(sm, md) {
+		font-size: .65em;
 	}
 	@include media-breakpoint-between(xs, sm) {
 		position: fixed;
@@ -159,6 +162,7 @@ header.main-header {
 		backdrop-filter: blur(5px) saturate(0);
 		box-shadow: 0 0 10px 3px rgba(0,0,0,0.5);
 		transition: all .25s ease-in-out;
+		font-size: 1em;
 
 		&.opened {
 			right: 0;
