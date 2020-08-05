@@ -155,12 +155,27 @@ header.main-header {
 		width: 90%;
 		height: 100vh;
 		z-index: 100;
-		background-color: $col1;
+		background-color: rgba($col1,.95);
+		backdrop-filter: blur(5px) saturate(0);
 		box-shadow: 0 0 10px 3px rgba(0,0,0,0.5);
 		transition: all .25s ease-in-out;
 
 		&.opened {
 			right: 0;
+		}
+		& nav {
+			margin-top: 2em;
+			text-align: center;
+			display: block;
+			& ul {
+				&, & li {
+					height: auto;
+					display: block;
+				}
+			}
+		}
+		& .lang-commutator {
+			margin-top: 2em;
 		}
 	}
 }
@@ -175,7 +190,7 @@ footer.main-footer {
 }
 .cont-all {
 	//padding: 1em 0;
-	min-height: calc( 100vh - 420px );
+	min-height: calc( 100vh - 258px );
 
 	@include media-breakpoint-between(xs, sm) {
 		min-height: calc( 100vh - 292px );
