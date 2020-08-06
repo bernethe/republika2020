@@ -1,3 +1,10 @@
+"use strict";
+
+var index = function index() {
+  new Glide('.glide-slider', {
+    autoplay: 7500
+  }).mount();
+};
 'use strict'; //npm install --save-dev @babel/core @babel/cli @babel/preset-env
 
 var main = function main() {
@@ -7,6 +14,8 @@ var main = function main() {
   if (window[_cp] && typeof window[_cp] === 'function') {
     window[_cp]();
   }
+
+  AOS.init();
 };
 
 var toggleMenu = function toggleMenu() {

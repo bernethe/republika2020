@@ -7,6 +7,7 @@ const main = () => {
 	if (window[_cp] && typeof window[_cp] === 'function') {
 		window[_cp]();
 	}
+	AOS.init();
 };
 const toggleMenu = () => {
 	document.getElementById('menu_btn').classList.toggle('opened');
