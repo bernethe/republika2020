@@ -38,6 +38,61 @@ body, html {
 	min-height: 100vh;
 	scroll-behavior: smooth;
 }
+a {
+	@include xlink {
+		color: $col2;
+		text-decoration: none;
+	}
+}
+details {
+	//border: 1px solid $col2;
+	width: 100%;
+	margin: .5em 0;
+
+	& summary {
+		display: flex;
+		align-items: center;
+		box-sizing: border-box;
+		width: 100%;
+		min-height: 4.25em;
+		background-color: $col2;
+		color: #fff;
+		padding: 1em;
+		cursor: pointer;
+
+		&:hover {
+			background-color: $col1;
+		}
+
+		&:after {
+			content: '▼';
+			float: right;
+			margin-left: 1em;
+			transform: rotate(90deg);
+			transition: all .1s linear;
+		}
+
+		&:focus {
+			outline: none;
+		}
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+	}
+
+	&[open] {
+		& summary {
+			&:after {
+				transform: rotate(0deg);
+			}
+		}
+	}
+
+	& > div {
+		padding: .5em 1em;
+	}
+}
 #menu_btn {
 	background-color: $col2;
 	border: none;
@@ -421,5 +476,39 @@ form.contact-form {
 		display: inline-block;
 		padding: .5em 2.5em;
 		margin-top: 1em;
+	}
+}
+.grid-row-5 {
+	display: grid;
+	// display: inline-grid;
+	grid-gap: 30px;
+	grid-template-columns: repeat(5, 20% [col-start]);
+
+	@include media-breakpoint-down(md) {
+		grid-template-columns: repeat(2, 50% [col-start]);
+	}
+
+	@include media-breakpoint-down(xs) {
+		grid-template-columns: repeat(1, 100% [col-start]);
+	}
+	// 
+	// grid-auto-rows: minmax(125px, auto);
+	// grid-auto-flow: dense;
+}
+.grid-col-1 {
+	& h5 {
+		color: $col2;
+		& span {
+			display: block;
+			font-size: .9em;
+		}
+	}
+}
+a.link-circle-black {
+	@include xlink {
+		color: #fff;
+		background-color: $col1;
+		display: inline-block;
+		border-radius: 50%;
 	}
 }
