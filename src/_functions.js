@@ -1,6 +1,6 @@
-// let docid_rx = new RegExp('^[0-9]{9,12}$');
-// let phone_rx = new RegExp('^[0-9]{8}$');
-let email_rx = new RegExp('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$');
+// const docid_rx = new RegExp('^[0-9]{9,12}$');
+// const phone_rx = new RegExp('^[0-9]{8}$');
+const email_rx = new RegExp('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$');
 const addEventListenerList = (list, event, fn) => {
 	for (var i = 0, len = list.length; i < len; i++) {
 		list[i].addEventListener(event, fn, !1);
