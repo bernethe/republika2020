@@ -387,13 +387,8 @@ a.cta-home {
 	padding: 10px;
 	
 	& .masonry-item {
-		padding: 1rem;
-		font-size: 14px;
-		font-weight: bold;
-		text-transform: uppercase;
-		color: #929796;
-		background-color: #333;
-		border-radius: 5px;
+		position: relative;
+		overflow: hidden;
 
 		&.masonry-col-2 {
 			grid-column-end: span 2;
@@ -413,6 +408,40 @@ a.cta-home {
 		}
 		&.masonry-row-4 {
 			grid-row-end: span 4;
+		}
+
+		& a {
+			@include xlink {
+				color: #fff;
+				text-align: center;
+
+				& img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					position: absolute;
+				}
+				& div {
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					left: 0;
+					top: 100%;
+					background-color: rgba(#000, .75);
+					backdrop-filter: blur(5px);
+					opacity: 0;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					transition: all .25s ease-in-out;
+				}
+			}
+			&:hover {
+				& div {
+					top: 0;
+					opacity: 1;
+				}
+			}
 		}
 	}
 
