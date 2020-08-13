@@ -20,7 +20,7 @@ const addEventListenerList = (list, event, fn) => {
 // 	}
 // 	document.body.removeChild(document.querySelector('.modal-pl'));
 // };
-const appendModal = (modalTxt = '', modalTittle, modalFooter) => {
+const appendModal = (modalTxt = '', modalTittle, modalFooter, isFull = false) => {
 	let modCont = new Array();
 	if(modalTittle != undefined) {
 		modCont.push( createCustomElement('div',{'class':'modal_header'},[ createCustomElement('h3',{},[modalTittle]) ]) );
@@ -31,6 +31,17 @@ const appendModal = (modalTxt = '', modalTittle, modalFooter) => {
 	}
 	modCont.push( createCustomElement('a',{'href':'#','class':'modal_close'},['×']) );
 	let mdl = createCustomElement('div',{'class':'modalAll'},modCont);
+	let blk = createCustomElement('div',{'id':'modalDialog'},[mdl]);
+	blk.addEventListener('click', e => {
+		if(e.target === blk) {
+			removeModal();
+		}
+	});
+	document.body.appendChild(blk);
+	document.querySelector('.modal_close').addEventListener('click',removeModal);
+};
+const appendModalMasonry = (modalTxt) => {
+	let mdl = createCustomElement('div',{style:'width:90%;text-align:center;'},[createCustomElement('a',{'href':'#','class':'modal_close'},['×']), modalTxt]);
 	let blk = createCustomElement('div',{'id':'modalDialog'},[mdl]);
 	blk.addEventListener('click', e => {
 		if(e.target === blk) {

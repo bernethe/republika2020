@@ -28,6 +28,7 @@ var appendModal = function appendModal() {
   var modalTxt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   var modalTittle = arguments.length > 1 ? arguments[1] : undefined;
   var modalFooter = arguments.length > 2 ? arguments[2] : undefined;
+  var isFull = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
   var modCont = new Array();
 
   if (modalTittle != undefined) {
@@ -53,6 +54,25 @@ var appendModal = function appendModal() {
   var mdl = createCustomElement('div', {
     'class': 'modalAll'
   }, modCont);
+  var blk = createCustomElement('div', {
+    'id': 'modalDialog'
+  }, [mdl]);
+  blk.addEventListener('click', function (e) {
+    if (e.target === blk) {
+      removeModal();
+    }
+  });
+  document.body.appendChild(blk);
+  document.querySelector('.modal_close').addEventListener('click', removeModal);
+};
+
+var appendModalMasonry = function appendModalMasonry(modalTxt) {
+  var mdl = createCustomElement('div', {
+    style: 'width:90%;text-align:center;'
+  }, [createCustomElement('a', {
+    'href': '#',
+    'class': 'modal_close'
+  }, ['×']), modalTxt]);
   var blk = createCustomElement('div', {
     'id': 'modalDialog'
   }, [mdl]);
@@ -108,13 +128,41 @@ var index = function index() {
   new Glide('.glide-slider', {
     autoplay: 7500
   }).mount();
+  addEventListenerList(document.querySelectorAll('.masonry-item a'), 'click', openMasonryItem);
 };
-'use strict'; //npm install --save-dev @babel/core @babel/cli @babel/preset-env
+
+var openMasonryItem = function openMasonryItem(e) {
+  e.preventDefault();
+
+  switch (e.target.parentElement.dataset.type) {
+    case 'vid':
+      appendModalMasonry(createCustomElement('div', {
+        "class": 'embed-responsive embed-responsive-16by9'
+      }, [createCustomElement('iframe', {
+        frameborder: '0',
+        allow: 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
+        allowfullscreen: 'allowfullscreen',
+        src: 'https://www.youtube.com/embed/' + e.target.parentElement.dataset.src
+      })]));
+      break;
+
+    case 'img':
+    default:
+      appendModalMasonry(createCustomElement('img', {
+        src: e.target.parentElement.dataset.src,
+        alt: '',
+        "class": 'img-fluid'
+      }, []));
+      break;
+  }
+};
+"use strict";
 
 var toggleMenu = function toggleMenu() {
   document.getElementById('menu_btn').classList.toggle('opened');
   document.querySelector('header.main-header').classList.toggle('opened');
 };
+"use strict";
 
 var validateMainForm = function validateMainForm(e) {
   e.preventDefault();
@@ -165,8 +213,12 @@ var validateMainForm = function validateMainForm(e) {
     });
   }
 };
+'use strict'; //npm install --save-dev @babel/core @babel/cli @babel/preset-env
+
+var lang = 'es';
 
 var main = function main() {
+  lang = document.getElementsByTagName('html')[0].getAttribute('lang');
   document.getElementById('menu_btn').addEventListener('click', toggleMenu, !1);
   var _cp = document.body.dataset.page;
 
