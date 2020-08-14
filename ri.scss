@@ -356,6 +356,7 @@ ul.sticky {
 	display: block;
 	width: 2.5em;
 	text-align: center;
+	z-index: 100;
 
 	&, & li {
 		list-style: none;
