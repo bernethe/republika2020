@@ -48,6 +48,27 @@ details {
 	//border: 1px solid $col2;
 	width: 100%;
 	margin: .5em 0;
+	position: relative;
+
+	&:after {
+		content: '▼';
+		color: #fff;
+		z-index: 10;
+		position: absolute;
+		right: 1em;
+		top: 1.5em;
+		width: 1em;
+		height: 1em;
+		margin-left: 1em;
+		transform: rotate(90deg);
+		transition: all .1s linear;
+	}
+
+	&[open] {
+		&:after {
+			transform: rotate(0deg);
+		}
+	}
 
 	& summary {
 		display: flex;
@@ -58,19 +79,13 @@ details {
 		background-color: $col2;
 		color: #fff;
 		padding: 1em;
+		padding-right: 3em;
 		cursor: pointer;
 
 		&:hover {
 			background-color: $col1;
 		}
 
-		&:after {
-			content: '▼';
-			float: right;
-			margin-left: 1em;
-			transform: rotate(90deg);
-			transition: all .1s linear;
-		}
 
 		&:focus {
 			outline: none;
@@ -78,14 +93,6 @@ details {
 
 		&::-webkit-details-marker {
 			display: none;
-		}
-	}
-
-	&[open] {
-		& summary {
-			&:after {
-				transform: rotate(0deg);
-			}
 		}
 	}
 
