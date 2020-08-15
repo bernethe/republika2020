@@ -59,7 +59,25 @@ const validateMainForm = (e) => {
 			body: _d
 		})
 		.then((res) => res.json() )
-		.then((data) => { console.log( data ) });
+		.then((data) => {
+			document.getElementById('name_txt').value = '';
+			document.getElementById('email_txt').value = '';
+			document.getElementById('phone_txt').value = '';
+			document.getElementById('service_txt').value = '';
+			document.getElementById('msj_txt').value = '';
+
+			appendModal(
+				createCustomElement('ul',{}, [
+					msjContactLang({
+						es:'El mensaje ha sido enviado',
+						en:'Message has been send.'
+					})
+				]), msjContactLang({
+					es:'Listo',
+					en:'Done'
+				})
+			);
+		});
 	}
 };
 const msjContactLang = (obj) => {
