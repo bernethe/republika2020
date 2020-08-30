@@ -58,7 +58,7 @@ const validateMainForm = (e) => {
 			method: 'POST',
 			body: _d
 		})
-		.then((res) => res.json() )
+		.then((res) => res.text() )
 		.then((data) => {
 			document.getElementById('name_txt').value = '';
 			document.getElementById('email_txt').value = '';
